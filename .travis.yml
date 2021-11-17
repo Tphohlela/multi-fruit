@@ -1,0 +1,14 @@
+  language: node_js
+
+env:
+  - DATABASE_URL=postgresql://postgres@localhost:5432/multifruit_tests
+
+node_js:
+  - 12
+
+before_script:
+  - psql -c 'create database  multifruit_tests' -U postgres
+  - psql -U postgres -d multifruit_tests -a -f multi-fruit.sql
+  
+services:
+  - postgresql
